@@ -13,9 +13,16 @@ form#form {
 
 div.title,
 div.checkbox,
+li.checkbox,
 button.clear {
   border: 1px solid #80808021;
   padding: 0.5rem;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 form#form {
@@ -24,18 +31,25 @@ form#form {
 
 input[type="text"] {
   border: none;
+  width: 100vw;
+  padding: 0.5rem;
 }
 
 .checkbox {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  justify-content: space-between;
 }
 
-.list div:nth-child(2n+1) {
+.list li:nth-child(2n+1) {
   background-color: #eee;
 }
 
 button.clear {
   background-color: #808080;
+}
+
+img {
+  width: 3vw;
 }

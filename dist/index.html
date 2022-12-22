@@ -4,11 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>To Do List App</title>
-    <script defer src="runtime.bundle.js"></script>
-    <script defer src="index.bundle.js"></script>
-  </head>
+  <script defer src="runtime.bundle.js"></script><script defer src="index.bundle.js"></script></head>
   <body>
-    <h1>Hi Henschel!</h1>
+    <section id="section">
+      <div class="title">Today's To Do List</div>
+
+      <form id="form">
+        <div class="checkbox">
+          <input type="text" id="text" placeholder="Add to your list..." />
+        </div>
+
+        <ul class="list">
+          <!-- <li class="checkbox" id=""><input type="checkbox" />TodoList1</li>
+          <li class="checkbox" id=""><input type="checkbox" />TodoList2</li>
+          <li class="checkbox" id=""><input type="checkbox" />TodoList3</li>
+          <li class="checkbox" id=""><input type="checkbox" />TodoList4</li> -->
+        </ul>
+      </form>
+      <button class="clear">Clear all completed</button>
+    </section>
+
     <script src="./index.js"></script>
   </body>
 </html>

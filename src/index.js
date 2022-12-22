@@ -1,6 +1,16 @@
+// IMPORT FILES
 import "./reset.css";
 import "./style.css";
+import dots from "./images/dots.png";
+import refresh from "./images/refresh.png";
+import enter from "./images/enter.png";
 
+// DECLARE GLOBAL VARIABLES
+const listContainer = document.querySelector(".list");
+const enterImg = document.querySelector("#enter");
+const refreshImg = document.querySelector("#refresh");
+
+// CREATE ARRAY OF LIST OBJECTS
 const lists = [
   {
     description: "todo1",
@@ -23,3 +33,18 @@ const lists = [
     index: "4",
   },
 ];
+
+// DISPLAY TO DO LIST
+const showList = () => {
+  lists.forEach((i) => {
+    const listElt = document.createElement("li");
+    listElt.dataset.listId = i.index;
+    listElt.classList.add("checkbox");
+    listElt.innerHTML += `<span><input type="checkbox" /> ${i.description}</span><img src="${dots}" />`;
+    enterImg.setAttribute("src", enter);
+    refreshImg.setAttribute("src", refresh);
+    listContainer.appendChild(listElt);
+  });
+};
+
+document.onload(showList());

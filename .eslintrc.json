@@ -12,6 +12,11 @@
   "extends": ["airbnb-base"],
   "rules": {
     // "linebreak-style": ["error", "linux"],
+    "quotes": [
+      2,
+      "single",
+      { "avoidEscape": true, "allowTemplateLiterals": true }
+    ],
     "max-len": ["error", { "code": 500 }],
     "max-classes-per-file": "off",
     "no-shadow": "off",

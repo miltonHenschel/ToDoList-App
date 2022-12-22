@@ -1,3 +1,41 @@
-body {
-  background-color: bisque;
+section#section {
+  border: 1px solid #808080;
+  width: 60vw;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+}
+
+form#form {
+  display: flex;
+  flex-direction: column;
+}
+
+div.title,
+div.checkbox,
+button.clear {
+  border: 1px solid #80808021;
+  padding: 0.5rem;
+}
+
+form#form {
+  border: 1px solid #80808021;
+}
+
+input[type="text"] {
+  border: none;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.list div:nth-child(2n+1) {
+  background-color: #eee;
+}
+
+button.clear {
+  background-color: #808080;
 }

@@ -9,6 +9,7 @@ section#section {
 form#form {
   display: flex;
   flex-direction: column;
+  border: 1px solid #80808021;
 }
 
 div.title,
@@ -23,10 +24,6 @@ button.clear {
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-form#form {
-  border: 1px solid #80808021;
 }
 
 input[type="text"] {

@@ -11,18 +11,19 @@
   },
   "extends": ["airbnb-base"],
   "rules": {
-    "linebreak-style": ["error", "linux"],
+    // "linebreak-style": ["error", "linux"],
     "max-len": ["error", { "code": 500 }],
     "max-classes-per-file": "off",
     "no-shadow": "off",
     "no-param-reassign": "off",
     "eol-last": "off",
-    "import/extensions": [ 1, {
-      "js": "always", "json": "always"
-    }]
+    "import/extensions": [
+      1,
+      {
+        "js": "always",
+        "json": "always"
+      }
+    ]
   },
-  "ignorePatterns": [
-    "dist/",
-    "build/"
-  ]
+  "ignorePatterns": ["dist/", "build/"]
 }

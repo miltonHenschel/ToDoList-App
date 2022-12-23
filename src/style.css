@@ -50,3 +50,8 @@ button.clear {
 img {
   width: 3vw;
 }
+
+p.error-message {
+  color: #f00;
+  display: none;
+}

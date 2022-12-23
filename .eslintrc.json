@@ -11,7 +11,7 @@
   },
   "extends": ["airbnb-base"],
   "rules": {
-    // "linebreak-style": ["error", "linux"],
+    "linebreak-style": ["error", "linux"],
     "max-len": ["error", { "code": 500 }],
     "max-classes-per-file": "off",
     "no-shadow": "off",

@@ -7,8 +7,8 @@ import enter from "./images/enter.png";
 
 // DECLARE GLOBAL VARIABLES
 const listContainer = document.querySelector(".list");
-const enterImg = document.querySelector("#enter");
-const refreshImg = document.querySelector("#refresh");
+const imgEnter = document.querySelector("#enter");
+const imgRefresh = document.querySelector("#refresh");
 
 // CREATE ARRAY OF LIST OBJECTS
 const lists = [
@@ -41,8 +41,8 @@ const showList = () => {
     listElt.dataset.listId = i.index;
     listElt.classList.add("checkbox");
     listElt.innerHTML += `<span><input type="checkbox" /> ${i.description}</span><img src="${dots}" />`;
-    enterImg.setAttribute("src", enter);
-    refreshImg.setAttribute("src", refresh);
+    imgEnter.setAttribute("src", enter);
+    imgRefresh.setAttribute("src", refresh);
     listContainer.appendChild(listElt);
   });
 };

@@ -6,6 +6,7 @@ import './style.css';
 import dots from './images/dots.png';
 import refresh from './images/refresh.png';
 import enter from './images/enter.png';
+// import refresh from './images/refresh.png';
 // import delete from './images/bin.png';
 
 // DECLARE GLOBAL VARIABLES
@@ -16,68 +17,47 @@ const errorMsg = document.querySelector('.error-message');
 let newIndex = 1;
 
 // CREATE ARRAY OF LIST OBJECTS
-let lists = [
-  {
-    description: 'todo1',
-    completed: 'true',
-    index: '1',
-  },
-  {
-    description: 'todo2',
-    completed: 'false',
-    index: '2',
-  },
-  // {
-  //   description: 'todo3',
-  //   completed: 'true',
-  //   index: '3',
-  // },
-  // {
-  //   description: 'todo4',
-  //   completed: 'false',
-  //   index: '4',
-  // },
-];
+let toDoList = [];
 
 // DISPLAY TO DO LIST
-const showList = () => {
-  lists.forEach((i) => {
-    i.index = newIndex;
-    const listElt = document.createElement('li');
-    // listElt.dataset.listId = i.index;
-    listElt.setAttribute('id', `${newIndex}`);
-    listElt.classList.add('checkbox');
-    listElt.innerHTML += `<span><input type="checkbox" /> ${i.description}</span><img src="${dots}" />`;
-    imgEnter.setAttribute('src', enter);
-    imgRefresh.setAttribute('src', refresh);
-    listContainer.appendChild(listElt);
+const showToDoList = () => {
+  let localToDo = localStorage.getItem('toDo.lists');
+  toDoList = localToDo === null ? [] : JSON.parse(localToDo);
+  let listElt = '';
+  toDoList.forEach((i) => {
+    let newIndex = i.index;
+    listElt += `<li id="${newIndex}" class="checkbox"><span><input id="input" type="checkbox" />&nbsp;${i.description}</span><img src="${dots}" /></li>`;
     newIndex += 1;
   });
+  listContainer.innerHTML = listElt;
 };
-
-window.onload = () => showList();
-// showList();
 
 const form = document.querySelector('#form');
 const inputText = document.querySelector('#text');
-
 form.addEventListener('submit', (e) => {
   e.preventDefault();
-  let len = lists.length;
-  lists = [];
-  const inputVal = inputText.value;
-  if (inputVal == null || inputVal === '') {
+  let localToDo = localStorage.getItem('toDo.lists');
+  toDoList = localToDo === null ? [] : JSON.parse(localToDo);
+  if (inputText.value == null || inputText.value === '') {
     errorMsg.setAttribute('style', 'display:block');
     return;
+  } else {
+    errorMsg.setAttribute('style', 'display:none');
   }
-  errorMsg.setAttribute('style', 'display:none');
-  console.log(len);
-  const createList = {
-    description: inputVal,
+  const newToDoList = {
+    description: inputText.value,
     completed: false,
-    index: newIndex,
+    index: newIndex++,
   };
   inputText.value = null;
-  lists.push(createList);
-  showList();
+  toDoList.push(newToDoList);
+  localStorage.setItem('toDo.lists', JSON.stringify(toDoList));
+  showToDoList();
 });
+
+imgRefresh.addEventListener('click', () => window.location.reload());
+window.onload = () => {
+  showToDoList();
+  imgEnter.setAttribute('src', enter);
+  imgRefresh.setAttribute('src', refresh);
+};

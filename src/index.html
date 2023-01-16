@@ -3,30 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <title>To Do List App</title>
   </head>
   <body>
     <section id="section">
       <div class="title">
         <p>Today's To Do List</p>
-        <img id="refresh" src="" />
+        <div id="refresh"><i class="fa-solid fa-arrows-rotate"></i></div>
       </div>
 
       <form id="form">
-        <div class="checkbox-div">
-          <p class="error-message">*empty field</p>
-          <div class="checkbox">
-            <input type="text" id="text" placeholder="Add to your list..." />
-            <img id="enter" src="" />
-          </div>
+        <div class="checkbox">
+          <input
+            type="text"
+            id="text"
+            placeholder="Add to your List"
+            required
+          />
+          <i class="fa-solid fa-arrow-right-to-bracket"></i>
         </div>
 
-        <ul class="list"></ul>
+        <ul id="list"></ul>
       </form>
-
       <button class="clear">Clear all completed</button>
     </section>
 
-    <script src="./index.js"></script>
+    <script src="./index.js" type="application/json"></script>
   </body>
 </html>

@@ -54,4 +54,5 @@ img {
 p.error-message {
   color: #f00;
   display: none;
+  border: solid;
 }

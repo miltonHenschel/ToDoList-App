@@ -2,9 +2,6 @@
 import './reset.css';
 import './style.css';
 
-// DECLARE GLOBAL VARIABLES
-let newIndex = 1;
-
 // CREATE ARRAY OF LIST OBJECTS
 let todolists = [
   {
@@ -64,8 +61,21 @@ class UserInterface {
 
     todolists.forEach((item) => UserInterface.addToDoLists(item));
 
-    // REMOVE
-    removeItem();
+    // REMOVE TO DO LIST
+    const dustbin = document
+      .querySelector('#list')
+      .querySelectorAll('.fa-trash-can');
+
+    dustbin.forEach((bin) => {
+      bin.addEventListener('click', (e) => {
+        // Remove item from UserInterface
+        UserInterface.removeToDoLists(e.target.parentElement);
+        // Remove item from LocalStorage
+        LocalStorage.removeToDoLists(
+          e.target.parentElement.previousElementSibling.children[1].value,
+        );
+      });
+    });
   }
 
   static addToDoLists(item) {
@@ -117,9 +127,8 @@ document.querySelector('.form-text').addEventListener('submit', (e) => {
   if (inputText.value == null || inputText.value === '') {
     errorMsg.setAttribute('style', 'display:block');
     return;
-  } else {
-    errorMsg.setAttribute('style', 'display:none');
   }
+  errorMsg.setAttribute('style', 'display:none');
 
   // const index = Array.from(e.target.parentNode.parentNode.children).indexOf(
   //   e.target.parentNode
@@ -151,20 +160,3 @@ const pageReload = () => window.location.reload();
 document
   .querySelector('.fa-arrows-rotate')
   .addEventListener('click', pageReload);
-
-// REMOVE TO DO LIST
-const removeItem = () => {
-  const dustbin = document
-    .querySelector('#list')
-    .querySelectorAll('.fa-trash-can');
-  dustbin.forEach((bin) => {
-    bin.addEventListener('click', (e) => {
-      // Remove item from UserInterface
-      UserInterface.removeToDoLists(e.target.parentElement);
-      // Remove item from LocalStorage
-      LocalStorage.removeToDoLists(
-        e.target.parentElement.previousElementSibling.children[1].value
-      );
-    });
-  });
-};

@@ -3,7 +3,6 @@ import './reset.css';
 import './style.css';
 
 // DECLARE GLOBAL VARIABLES
-const errorMsg = document.querySelector('.error-message');
 let newIndex = 1;
 
 // CREATE ARRAY OF LIST OBJECTS
@@ -11,56 +10,24 @@ let todolists = [
   {
     index: 1,
     desc: 'Desc1',
+    comp: false,
   },
   {
     index: 2,
     desc: 'Desc2',
+    comp: false,
   },
 ];
-// DISPLAY TO DO LIST
-// const showToDoList = () => {
-//   let localToDo = localStorage.getItem('toDo.lists');
-//   toDoList = localToDo === null ? [] : JSON.parse(localToDo);
-//   let listElt = '';
-//   toDoList.forEach((i) => {
-//     let newIndex = i.index;
-//     listElt += `<li id="${newIndex}" class="checkbox"><span><input id="input" type="checkbox" />&nbsp;${i.description}</span><img src="${dots}" /></li>`;
-//     newIndex += 1;
-//   });
-//   listContainer.innerHTML = listElt;
-// };
-
-// const form = document.querySelector('#form');
-// form.addEventListener('submit', (e) => {
-//   e.preventDefault();
-//   let localToDo = localStorage.getItem('toDo.lists');
-//   toDoList = localToDo === null ? [] : JSON.parse(localToDo);
-//   const inputText = document.querySelector('#text');
-//   if (inputText.value == null || inputText.value === '') {
-//     errorMsg.setAttribute('style', 'display:block');
-//     return;
-//   } else {
-//     errorMsg.setAttribute('style', 'display:none');
-//   }
-//   const newToDoList = {
-//     description: inputText.value,
-//     completed: false,
-//     index: newIndex++,
-//   };
-//   inputText.value = null;
-//   toDoList.push(newToDoList);
-//   localStorage.setItem('toDo.lists', JSON.stringify(toDoList));
-//   showToDoList();
-// });
 
 class ToDoList {
-  constructor(index, desc) {
+  constructor(index, desc, comp) {
     this.index = index;
     this.desc = desc;
+    this.comp = comp;
   }
 }
 
-// LocalStorage Class: Handles Storage
+// LOCAL STORAGE
 class LocalStorage {
   static getToDoLists() {
     if (localStorage.getItem('todolists') === null) {
@@ -68,7 +35,6 @@ class LocalStorage {
     } else {
       todolists = JSON.parse(localStorage.getItem('todolists'));
     }
-    // todolists = JSON.parse(localStorage.getItem('todolists')) || [];
     return todolists;
   }
 
@@ -78,11 +44,11 @@ class LocalStorage {
     localStorage.setItem('todolists', JSON.stringify(todolists));
   }
 
-  static removeToDoLists(bookTitle) {
+  static removeToDoLists(newdesc) {
     const todolists = LocalStorage.getToDoLists();
 
     todolists.forEach((item, index) => {
-      if (item.bookTitle === bookTitle) {
+      if (item.desc === newdesc) {
         todolists.splice(index, 1);
       }
     });
@@ -91,49 +57,63 @@ class LocalStorage {
   }
 }
 
-// UserInterface Class: Handle UserInterface Tasks
+// USER INTERFACE
 class UserInterface {
   static showToDoLists() {
     const todolists = LocalStorage.getToDoLists();
 
     todolists.forEach((item) => UserInterface.addToDoLists(item));
+
+    // REMOVE
+    removeItem();
   }
 
   static addToDoLists(item) {
-    const listContainer = document.querySelector('#list');
+    const listContent = document.querySelector('#list');
     const listElt = document.createElement('li');
-    // listElt.dataset.listId = item.index;
-    listElt.classList = 'checkbox';
+    listElt.classList = 'new';
+    listElt.id = `${item.index}`;
     listElt.innerHTML += `
-      <span class="remove"><input id="desc" type="checkbox" /> ${item.desc}</span><i class="fa-solid fa-ellipsis-vertical" name="update"></i>
+      <span class="inputs"><input class="checkbox" type="checkbox" /><input class="desc" type="text" value="${item.desc}" /></span>
+      <button class="text-btn" type="button">
+        <i class="fa-solid fa-trash-can"></i>
+      </button>
       `;
-    listContainer.appendChild(listElt);
+    listContent.appendChild(listElt);
+    // <i class="fa-solid fa-ellipsis-vertical" name="update"></i>
+    const listContainer = document.querySelector('.form-text');
+    listContainer.innerHTML = `
+      <p class="error-message">*Error</p>
+      <form class="form-text" action="">
+        <input type="text" class="text" placeholder="Add to your list..." />
+        <i class="fa-solid fa-arrow-right-to-bracket"></i>
+      </form>
+    `;
   }
 
-  static removeToDoLists(el) {
-    if (el.classList.contains('remove')) {
-      el.parentElement.remove();
+  static removeToDoLists(elt) {
+    if (elt.classList.contains('text-btn')) {
+      elt.parentElement.remove();
     }
     localStorage.setItem('todolists', JSON.stringify(todolists));
   }
 
   static clearFields() {
-    document.querySelector('#text').value = '';
-    // document.querySelector('#itemAuthor').value = '';
+    document.querySelector('.text').value = '';
   }
 }
 
-// Event: Display todolists
+// DISPLAY TO DO LIST
 document.addEventListener('DOMContentLoaded', UserInterface.showToDoLists);
 
-// Event: Add a item
-document.querySelector('#form').addEventListener('submit', (e) => {
+// ADD TO DO LIST
+document.querySelector('.form-text').addEventListener('submit', (e) => {
   // Prevent actual submit
   e.preventDefault();
 
-  // Get form values
-  // const desc = document.querySelector('#text').value;
-  const inputText = document.querySelector('#text');
+  // Error Handling
+  const inputText = document.querySelector('.text');
+  const errorMsg = document.querySelector('.error-message');
   if (inputText.value == null || inputText.value === '') {
     errorMsg.setAttribute('style', 'display:block');
     return;
@@ -144,11 +124,17 @@ document.querySelector('#form').addEventListener('submit', (e) => {
   // const index = Array.from(e.target.parentNode.parentNode.children).indexOf(
   //   e.target.parentNode
   // );
+  // console.log(e.target.children[2]);
+  // console.log(e.target.children[2].childElementCount);
+  // console.log(Array.from(e.target.children).indexOf(e.target.children[2]));
+  // console.log(todolists[todolists.length - 1].index);
+
   const desc = inputText.value;
-  const index = Date.now();
+  const index = todolists[todolists.length - 1].index + 1;
+  const comp = false;
 
   // Instantiate item
-  const newtodolists = new ToDoList(index, desc);
+  const newtodolists = new ToDoList(index, desc, comp);
 
   // Add item to UserInterface
   UserInterface.addToDoLists(newtodolists);
@@ -160,40 +146,25 @@ document.querySelector('#form').addEventListener('submit', (e) => {
   UserInterface.clearFields();
 });
 
-// Reload page
+// PAGE RELOAD
 const pageReload = () => window.location.reload();
 document
   .querySelector('.fa-arrows-rotate')
   .addEventListener('click', pageReload);
 
+// REMOVE TO DO LIST
 const removeItem = () => {
-  console.log('remove');
-  // Remove item from UserInterface
-  // UserInterface.removeToDoLists(e.target);
-  // Remove item from LocalStorage
-  // LocalStorage.removeToDoLists(
-  //   e.target.previousElementSibling.previousElementSibling.textContent
-  // );
+  const dustbin = document
+    .querySelector('#list')
+    .querySelectorAll('.fa-trash-can');
+  dustbin.forEach((bin) => {
+    bin.addEventListener('click', (e) => {
+      // Remove item from UserInterface
+      UserInterface.removeToDoLists(e.target.parentElement);
+      // Remove item from LocalStorage
+      LocalStorage.removeToDoLists(
+        e.target.parentElement.previousElementSibling.children[1].value
+      );
+    });
+  });
 };
-
-// let i;
-// Event: Remove a item
-// document.querySelectorAll('.fa-ellipsis-vertical').forEach(i, () => {
-//   i.addEventListener('click', console.log('remove'));
-// });
-
-document.querySelectorAll('.fa-ellipsis-vertical').forEach((i) =>
-  i.addEventListener('click', (e) => {
-    console.log(e.target);
-    console.log('remove');
-  })
-);
-
-// console.log('remove');
-// Remove item from UserInterface
-// UserInterface.removeToDoLists(e.target);
-// Remove item from LocalStorage
-// LocalStorage.removeToDoLists(
-//   e.target.previousElementSibling.previousElementSibling.textContent
-// );
-// });

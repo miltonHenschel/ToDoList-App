@@ -6,14 +6,17 @@ section#section {
   flex-direction: column;
 }
 
-form#form {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid #80808021;
+.form-text {
+  width: -webkit-fill-available;
+}
+
+button.text-btn {
+  border: none;
+  background: none;
 }
 
 div.title,
-div.checkbox,
+div.form-text,
 li.checkbox,
 button.clear {
   border: 1px solid #80808021;
@@ -26,13 +29,17 @@ button.clear {
   justify-content: space-between;
 }
 
+span.inputs {
+  display: flex;
+}
+
 input[type="text"] {
   border: none;
-  width: 100vw;
+  width: 100%;
   padding: 0.5rem;
 }
 
-.checkbox {
+.new, .form-text {
   display: flex;
   align-items: center;
   gap: 0.5rem;

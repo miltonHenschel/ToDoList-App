@@ -6,18 +6,26 @@ section#section {
   flex-direction: column;
 }
 
-form#form {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid #80808021;
+.form-text {
+  width: 100%;
+  padding-right: 0.5rem;
+}
+
+div#refresh {
+  padding-right: 0.25rem;
+}
+
+button.text-btn {
+  border: none;
+  background: none;
 }
 
 div.title,
-div.checkbox,
+div.form-text,
 li.checkbox,
 button.clear {
   border: 1px solid #80808021;
-  padding: 0.5rem;
+  padding: 0.5rem 0;
 }
 
 .title {
@@ -26,20 +34,26 @@ button.clear {
   justify-content: space-between;
 }
 
-input[type="text"] {
+span.inputs {
+  display: flex;
+  width: 100%;
+}
+
+input[type='text'] {
   border: none;
-  width: 100vw;
+  width: 100%;
   padding: 0.5rem;
 }
 
-.checkbox {
+.new,
+.form-text {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   justify-content: space-between;
 }
 
-.list li:nth-child(2n+1) {
+.list li:nth-child(2n + 1) {
   background-color: #eee;
 }
 
@@ -49,4 +63,14 @@ button.clear {
 
 img {
   width: 3vw;
+}
+
+.title p {
+  padding-left: 0.5rem;
+}
+
+p.error-message {
+  color: #f00;
+  display: none;
+  border: solid;
 }

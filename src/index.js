@@ -1,46 +1,60 @@
+// IMPORT FILES
 import './reset.css';
 import './style.css';
-import dots from './images/dots.png';
-import refresh from './images/refresh.png';
-import enter from './images/enter.png';
+import ToDoList from './modules/toDoList.js';
+import {
+  LocalStorage,
+  UserInterface,
+  todolists,
+} from './modules/LocalStorage_UI.js';
 
-const listContainer = document.querySelector('.list');
-const enterImg = document.querySelector('#enter');
-const refreshImg = document.querySelector('#refresh');
+// DISPLAY TO DO LIST
+document.addEventListener('DOMContentLoaded', UserInterface.showToDoLists);
 
-const lists = [
-  {
-    description: 'todo1',
-    completed: 'true',
-    index: '1',
-  },
-  {
-    description: 'todo2',
-    completed: 'false',
-    index: '2',
-  },
-  {
-    description: 'todo3',
-    completed: 'true',
-    index: '3',
-  },
-  {
-    description: 'todo4',
-    completed: 'false',
-    index: '4',
-  },
-];
+document.addEventListener('DOMContentLoaded', () => {
+  const listContainer = document.querySelector('.form-text');
+  listContainer.innerHTML = `
+      <p class="error-message">*Error</p>
+      <form class="form-text" action="">
+        <input type="text" class="text" placeholder="Add to your list..." />
+        <i class="fa-solid fa-arrow-right-to-bracket"></i>
+      </form>
+    `;
+});
 
-const showList = () => {
-  lists.forEach((i) => {
-    const listElt = document.createElement('li');
-    listElt.dataset.listId = i.index;
-    listElt.classList.add('checkbox');
-    listElt.innerHTML += `<span><input type="checkbox" /> ${i.description}</span><img src="${dots}" />`;
-    enterImg.setAttribute('src', enter);
-    refreshImg.setAttribute('src', refresh);
-    listContainer.appendChild(listElt);
-  });
-};
+// ADD TO DO LIST
+document.querySelector('.form-text').addEventListener('submit', (e) => {
+  // Prevent actual submit
+  e.preventDefault();
 
-showList();
+  // Error Handling
+  const inputText = document.querySelector('.text');
+  const errorMsg = document.querySelector('.error-message');
+  if (inputText.value == null || inputText.value === '') {
+    errorMsg.setAttribute('style', 'display:block');
+    return;
+  }
+  errorMsg.setAttribute('style', 'display:none');
+
+  const desc = inputText.value;
+  const index = todolists.length + 1;
+  const comp = false;
+
+  // Instantiate item
+  const newtodolists = new ToDoList(index, desc, comp);
+
+  // Add item to UserInterface
+  UserInterface.addToDoLists(newtodolists);
+
+  // Add item to LocalStorage
+  LocalStorage.addToDoLists(newtodolists);
+
+  // Clear fields
+  UserInterface.clearFields();
+});
+
+// PAGE RELOAD
+const pageReload = () => window.location.reload();
+document
+  .querySelector('.fa-arrows-rotate')
+  .addEventListener('click', pageReload);

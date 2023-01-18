@@ -1,102 +1,12 @@
 // IMPORT FILES
 import './reset.css';
 import './style.css';
-
-// CREATE ARRAY OF LIST OBJECTS
-let todolists = [];
-
-class ToDoList {
-  constructor(index, desc, comp) {
-    this.index = index;
-    this.desc = desc;
-    this.comp = comp;
-  }
-}
-
-// LOCAL STORAGE
-class LocalStorage {
-  static getToDoLists() {
-    if (localStorage.getItem('todolists') === null) {
-      localStorage.setItem('todolists', JSON.stringify(todolists));
-    } else {
-      todolists = JSON.parse(localStorage.getItem('todolists'));
-    }
-    return todolists;
-  }
-
-  static addToDoLists(item) {
-    const todolists = LocalStorage.getToDoLists();
-    todolists.push(item);
-    localStorage.setItem('todolists', JSON.stringify(todolists));
-  }
-
-  static removeToDoLists(newdesc) {
-    const todolists = LocalStorage.getToDoLists();
-
-    todolists.forEach((item, index) => {
-      if (item.desc === newdesc) {
-        todolists.splice(index, 1);
-      }
-    });
-
-    // RESET INDEX
-    todolists.forEach((item, index) => {
-      item.index = index + 1;
-    });
-
-    localStorage.setItem('todolists', JSON.stringify(todolists));
-  }
-}
-
-// USER INTERFACE
-class UserInterface {
-  static showToDoLists() {
-    const todolists = LocalStorage.getToDoLists();
-
-    todolists.forEach((item) => UserInterface.addToDoLists(item));
-
-    // REMOVE TO DO LIST
-    const dustbin = document
-      .querySelector('#list')
-      .querySelectorAll('.fa-trash-can');
-
-    dustbin.forEach((bin) => {
-      bin.addEventListener('click', (e) => {
-        // Remove item from UserInterface
-        UserInterface.removeToDoLists(e.target.parentElement);
-        // Remove item from LocalStorage
-        LocalStorage.removeToDoLists(
-          e.target.parentElement.previousElementSibling.children[1].value,
-        );
-      });
-    });
-  }
-
-  static addToDoLists(item) {
-    const listContent = document.querySelector('#list');
-    const listElt = document.createElement('li');
-    listElt.classList = 'new';
-    listElt.id = `${item.index}`;
-    listElt.innerHTML += `
-      <span class="inputs"><input class="checkbox" type="checkbox" /><input class="desc" type="text" value="${item.desc}" /></span>
-      <button class="text-btn" type="button">
-        <i class="fa-solid fa-trash-can"></i>
-      </button>
-      `;
-    listContent.appendChild(listElt);
-  }
-
-  static removeToDoLists(elt) {
-    if (elt.classList.contains('text-btn')) {
-      elt.parentElement.remove();
-    }
-    localStorage.setItem('todolists', JSON.stringify(todolists));
-  }
-
-  static clearFields() {
-    document.querySelector('.text').value = '';
-  }
-}
+import ToDoList from './modules/toDoList.js';
+import {
+  LocalStorage,
+  UserInterface,
+  todolists,
+} from './modules/LocalStorage_UI.js';
 
 // DISPLAY TO DO LIST
 document.addEventListener('DOMContentLoaded', UserInterface.showToDoLists);

@@ -3,18 +3,7 @@ import './reset.css';
 import './style.css';
 
 // CREATE ARRAY OF LIST OBJECTS
-let todolists = [
-  {
-    index: 1,
-    desc: 'Desc1',
-    comp: false,
-  },
-  {
-    index: 2,
-    desc: 'Desc2',
-    comp: false,
-  },
-];
+let todolists = [];
 
 class ToDoList {
   constructor(index, desc, comp) {
@@ -48,6 +37,11 @@ class LocalStorage {
       if (item.desc === newdesc) {
         todolists.splice(index, 1);
       }
+    });
+
+    // RESET INDEX
+    todolists.forEach((item, index) => {
+      item.index = index + 1;
     });
 
     localStorage.setItem('todolists', JSON.stringify(todolists));
@@ -90,15 +84,6 @@ class UserInterface {
       </button>
       `;
     listContent.appendChild(listElt);
-    // <i class="fa-solid fa-ellipsis-vertical" name="update"></i>
-    const listContainer = document.querySelector('.form-text');
-    listContainer.innerHTML = `
-      <p class="error-message">*Error</p>
-      <form class="form-text" action="">
-        <input type="text" class="text" placeholder="Add to your list..." />
-        <i class="fa-solid fa-arrow-right-to-bracket"></i>
-      </form>
-    `;
   }
 
   static removeToDoLists(elt) {
@@ -116,6 +101,17 @@ class UserInterface {
 // DISPLAY TO DO LIST
 document.addEventListener('DOMContentLoaded', UserInterface.showToDoLists);
 
+document.addEventListener('DOMContentLoaded', () => {
+  const listContainer = document.querySelector('.form-text');
+  listContainer.innerHTML = `
+      <p class="error-message">*Error</p>
+      <form class="form-text" action="">
+        <input type="text" class="text" placeholder="Add to your list..." />
+        <i class="fa-solid fa-arrow-right-to-bracket"></i>
+      </form>
+    `;
+});
+
 // ADD TO DO LIST
 document.querySelector('.form-text').addEventListener('submit', (e) => {
   // Prevent actual submit
@@ -130,16 +126,8 @@ document.querySelector('.form-text').addEventListener('submit', (e) => {
   }
   errorMsg.setAttribute('style', 'display:none');
 
-  // const index = Array.from(e.target.parentNode.parentNode.children).indexOf(
-  //   e.target.parentNode
-  // );
-  // console.log(e.target.children[2]);
-  // console.log(e.target.children[2].childElementCount);
-  // console.log(Array.from(e.target.children).indexOf(e.target.children[2]));
-  // console.log(todolists[todolists.length - 1].index);
-
   const desc = inputText.value;
-  const index = todolists[todolists.length - 1].index + 1;
+  const index = todolists.length + 1;
   const comp = false;
 
   // Instantiate item

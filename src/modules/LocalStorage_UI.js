@@ -32,6 +32,9 @@ class LocalStorage {
     // UPDATE DESCRIPTION
     LocalStorage.updateDesc();
 
+    // COMPLETE TASKS
+    LocalStorage.taskComp();
+
     localStorage.setItem('todolists', JSON.stringify(todolists));
   }
 
@@ -45,6 +48,15 @@ class LocalStorage {
     for (let i = 0; i < todolists.length; i += 1) {
       if (todolists[i].index === +index) {
         todolists[i].desc = desc;
+        localStorage.setItem('todolists', JSON.stringify(todolists));
+      }
+    }
+  }
+
+  static taskComp(index) {
+    for (let i = 0; i < todolists.length; i += 1) {
+      if (todolists[i].index === +index) {
+        todolists[i].comp = !todolists[i].comp;
         localStorage.setItem('todolists', JSON.stringify(todolists));
       }
     }
@@ -84,6 +96,17 @@ class UserInterface {
         );
       });
     });
+
+    // COMPLETED TO DO lIST
+    const checkbox = document
+      .querySelector('#list')
+      .querySelectorAll('.checkbox');
+
+    checkbox.forEach((elt) => {
+      elt.addEventListener('change', (e) => {
+        LocalStorage.taskComp(e.target.parentElement.parentElement.id);
+      });
+    });
   }
 
   static addToDoLists(item) {
@@ -104,6 +127,7 @@ class UserInterface {
     if (elt.classList.contains('text-btn')) {
       elt.parentElement.remove();
     }
+
     localStorage.setItem('todolists', JSON.stringify(todolists));
   }
 

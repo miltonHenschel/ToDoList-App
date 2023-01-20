@@ -4,6 +4,7 @@ import './style.css';
 import ToDoList from './modules/toDoList.js';
 import LocalStorage from './modules/localStorage.js';
 import UserInterface from './modules/userInterface.js';
+import CompleteToDoList from './modules/CompleteToDoList.js';
 
 // PAGE RELOAD
 document
@@ -23,8 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
   UserInterface.showToDoLists();
   UserInterface.removeToDoLists();
   UserInterface.updateDesc();
-  UserInterface.compToDoList();
-  UserInterface.clearComp();
+  CompleteToDoList.compToDoList();
+  CompleteToDoList.clearComp();
 });
 
 // ADD TO DO LIST

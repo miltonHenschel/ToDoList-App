@@ -164,7 +164,7 @@ Example command:
 
 ### Run tests <a name="run-tests"></a>
 
-To run Stylelint and ESLint tests, run the following commands `npx stylelint "**/*.{css,scss}"` `npx eslint .` respectively.
+To run Stylelint and ESLint tests, run the following commands respectively `npx stylelint "**/*.{css,scss}"` `npx eslint .`
 
 ### Deployment <a name="deployment"></a>
 

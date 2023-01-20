@@ -36,8 +36,6 @@
 
 A tool that helps to organize your day. It simply lists the things that you need to do and allows you to mark them as complete.
 
-How to build the "To-do list" website?.
-
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
@@ -117,20 +115,42 @@ In order to run this project you need:
 - [ ] Link your PC to GitHub
 - [ ] Clone this repository to your desired folder:
 
-`git clone https://github.com/miltonHenschel/ToDoList-App.git`
-`cd ToDoListApp`
+```
+git clone https://github.com/miltonHenschel/ToDoList-App.git
+```
+```
+cd ToDoListApp
+```
 
 - [ ] Open the file in your code editor
+```
+code .
+```
 - [ ] Setup JavaScript + CSS + HTML linter
 
-Run the following codes in your project folder in your IDE: `npm install --save-dev stylelint@13.x stylelint-scss@3.x stylelint-config-standard@21.x stylelint-csstree-validator@1.x` `npm install --save-dev eslint@7.x eslint-config-airbnb-base@14.x eslint-plugin-import@2.x babel-eslint@10.x`
+Run the following codes in your project folder in your IDE: 
+```
+npm install --save-dev stylelint@13.x stylelint-scss@3.x stylelint-config-standard@21.x stylelint-csstree-validator@1.x
+```
+```
+npm install --save-dev eslint@7.x eslint-config-airbnb-base@14.x eslint-plugin-import@2.x babel-eslint@10.x
+```
 
 ### Install
 
 Install this project with:
 
-- [ ] node_models `npm install -g node-modules`
-- [ ] webpack `npm install -g webpack` `npm install -g webpack-cli`
+- [ ] node_modules
+```
+npm install -g node-modules
+```
+- [ ] webpack 
+```
+npm install -g webpack
+```
+```
+npm install -g webpack-cli
+```
 - [ ] project dependencies
 
 <!--
@@ -156,7 +176,13 @@ Example command:
 
 ### Run tests <a name="run-tests"></a>
 
-To run Stylelint and ESLint tests, run the following commands `npx stylelint "**/*.{css,scss}"` `npx eslint .` respectively.
+To run Stylelint and ESLint tests, run the following commands respectively: 
+```
+npx stylelint "**/*.{css,scss}"
+```
+```
+npx eslint .
+```
 
 ### Deployment <a name="deployment"></a>
 
@@ -221,7 +247,7 @@ Give a ⭐️ if you like this project!
 
 <!-- > Give credit to everyone who inspired your codebase.-->
 
-- [ ] **![](https://img.shields.io/badge/Microverse-blueviolet)**
+- [ ] **![Microverse Team](https://img.shields.io/badge/Microverse-blueviolet)**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -233,7 +259,13 @@ Give a ⭐️ if you like this project!
 
 - **How to fix JavaScript + CSS + HTML linter errors?**
 
-  - Kindly use `npx stylelint "**/*.{css,scss} --fix"` and `npx eslint . --fix` in the project's root directory.
+  - Kindly use the following in your project's root directory:
+  ```
+  npx stylelint "**/*.{css,scss} --fix"
+  ```
+  ```
+  npx eslint . --fix
+  ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

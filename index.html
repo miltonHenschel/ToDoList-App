@@ -3,27 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <title>To Do List App</title>
   <script defer src="runtime.bundle.js"></script><script defer src="index.bundle.js"></script></head>
   <body>
     <section id="section">
-      <div class="title">Today's To Do List</div>
+      <div class="title">
+        <p>Today's To Do List</p>
+        <div id="refresh"><i class="fa-solid fa-arrows-rotate"></i></div>
+      </div>
 
-      <form id="form">
-        <div class="checkbox">
-          <input type="text" id="text" placeholder="Add to your list..." />
-        </div>
+      <div class="form-text"></div>
 
-        <ul class="list">
-          <!-- <li class="checkbox" id=""><input type="checkbox" />TodoList1</li>
-          <li class="checkbox" id=""><input type="checkbox" />TodoList2</li>
-          <li class="checkbox" id=""><input type="checkbox" />TodoList3</li>
-          <li class="checkbox" id=""><input type="checkbox" />TodoList4</li> -->
-        </ul>
-      </form>
-      <button class="clear">Clear all completed</button>
+      <ul id="list"></ul>
+
+      <button class="clear" type="button">Clear all completed</button>
     </section>
 
-    <script src="./index.js"></script>
+    <script src="./index.js" type="module"></script>
+    <script src="./modules/toDoList.js" type="module"></script>
+    <script src="./modules/localStorage.js" type="module"></script>
+    <script src="./modules/userInterface.js" type="module"></script>
   </body>
 </html>

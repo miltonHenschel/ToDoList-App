@@ -2,24 +2,30 @@
 import './reset.css';
 import './style.css';
 import ToDoList from './modules/toDoList.js';
-import {
-  LocalStorage,
-  UserInterface,
-  todolists,
-} from './modules/LocalStorage_UI.js';
+import LocalStorage from './modules/localStorage.js';
+import UserInterface from './modules/userInterface.js';
+import CompleteToDoList from './modules/CompleteToDoList.js';
+
+// PAGE RELOAD
+document
+  .querySelector('.fa-arrows-rotate')
+  .addEventListener('click', () => window.location.reload());
 
 // DISPLAY TO DO LIST
-document.addEventListener('DOMContentLoaded', UserInterface.showToDoLists);
-
 document.addEventListener('DOMContentLoaded', () => {
   const listContainer = document.querySelector('.form-text');
   listContainer.innerHTML = `
       <p class="error-message">*Error</p>
       <form class="form-text" action="">
-        <input type="text" class="text" placeholder="Add to your list..." />
+        <input type="text" class="text" placeholder="Add to your list..." required />
         <i class="fa-solid fa-arrow-right-to-bracket"></i>
       </form>
     `;
+  UserInterface.showToDoLists();
+  UserInterface.removeToDoLists();
+  UserInterface.updateDesc();
+  CompleteToDoList.compToDoList();
+  CompleteToDoList.clearComp();
 });
 
 // ADD TO DO LIST
@@ -27,15 +33,8 @@ document.querySelector('.form-text').addEventListener('submit', (e) => {
   // Prevent actual submit
   e.preventDefault();
 
-  // Error Handling
   const inputText = document.querySelector('.text');
-  const errorMsg = document.querySelector('.error-message');
-  if (inputText.value == null || inputText.value === '') {
-    errorMsg.setAttribute('style', 'display:block');
-    return;
-  }
-  errorMsg.setAttribute('style', 'display:none');
-
+  const todolists = LocalStorage.getToDoLists();
   const desc = inputText.value;
   const index = todolists.length + 1;
   const comp = false;
@@ -51,10 +50,7 @@ document.querySelector('.form-text').addEventListener('submit', (e) => {
 
   // Clear fields
   UserInterface.clearFields();
-});
 
-// PAGE RELOAD
-const pageReload = () => window.location.reload();
-document
-  .querySelector('.fa-arrows-rotate')
-  .addEventListener('click', pageReload);
+  // PAGE RELOAD
+  window.location.reload();
+});

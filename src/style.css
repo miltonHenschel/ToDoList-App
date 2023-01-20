@@ -45,6 +45,12 @@ input[type='text'] {
   padding: 0.5rem;
 }
 
+input:checked + input {
+  text-decoration: line-through;
+  color: #ccc;
+  font-style: italic;
+}
+
 .new,
 .form-text {
   display: flex;

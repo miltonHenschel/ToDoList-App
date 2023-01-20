@@ -110,6 +110,7 @@
     "get-intrinsic": "^1.1.3",
     "get-stdin": "^8.0.0",
     "get-symbol-description": "^1.0.0",
+    "gh-pages": "^4.0.0",
     "glob": "^7.2.3",
     "glob-parent": "^5.1.2",
     "global-modules": "^2.0.0",
@@ -319,10 +320,10 @@
     "zwitch": "^1.0.5"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "webpack --watch",
     "start": "webpack serve --open",
-    "build": "webpack"
+    "build": "webpack",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -336,5 +337,5 @@
   "bugs": {
     "url": "https://github.com/miltonHenschel/ToDoList-App/issues"
   },
-  "homepage": "https://github.com/miltonHenschel/ToDoList-App#readme"
+  "homepage": "https://miltonHenschel.github.io/ToDoList-App/dist"
 }

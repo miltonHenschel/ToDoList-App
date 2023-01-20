@@ -24,7 +24,7 @@ class UserInterface {
         localStorage.setItem('todolists', JSON.stringify(todolists));
 
         LocalStorage.removeToDoLists(
-          e.target.parentElement.previousElementSibling.children[1].value
+          e.target.parentElement.previousElementSibling.children[1].value,
         );
       });
     });
@@ -38,7 +38,7 @@ class UserInterface {
       elt.addEventListener('change', (e) => {
         LocalStorage.updateDesc(
           e.target.value,
-          e.target.parentElement.parentElement.id
+          e.target.parentElement.parentElement.id,
         );
       });
     });

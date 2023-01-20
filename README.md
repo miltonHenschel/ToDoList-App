@@ -44,7 +44,12 @@ How to build the "To-do list" website?.
 
 <!-- > Describe the tech stack and include only the relevant sections that apply to your project.-->
 
-<a href="https://www.w3.org/html/" target="_blank"><img align="center" src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/html-icon.svg" alt="html5" width="55" height="55"/></a> <a href="https://www.w3schools.com/css/" target="_blank"><img align="center" src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/css-icon.svg" alt="css3" width="55" height="55"/></a> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"><img align="center" src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/javascript-programming-language-icon.svg" alt="javascript" width="55" height="55"/></a> <a href="https://webpack.js.org/" target="_blank" rel="noreferrer"><img align="center" src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/webpack-icon.svg" alt="webpack" width="55" height="55"/></a>
+<img src="https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white" />
+<img src="https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white" />
+<img src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E" />
+<img src="https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white" />
+<img src="https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white" />
+<img src="https://img.shields.io/badge/Webpack-8DD6F9?style=for-the-badge&logo=Webpack&logoColor=white" />
 
 <!--
 <details>
@@ -75,10 +80,12 @@ How to build the "To-do list" website?.
 <!-- > Describe between 1-3 key features of the application.-->
 
 - **Adding a new item**
-- **Removing a selected item**
-- **Marking a selected item as complete**
-- **Removing all items marked as complete at once**
-- **Reordering a selected item (as drag-and-drop)**
+- **Removing an item**
+- **Marking an item as complete**
+- **Removing completed items**
+- **Reordering item indexes when deleted**
+- **Updating item description**
+- **Updating the local storage**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -118,9 +125,9 @@ In order to run this project you need:
 - [ ] Clone this repository to your desired folder:
 
 `git clone https://github.com/miltonHenschel/ToDoList-App.git`
-`cd ToDoListApp`
+`cd ToDoList-App`
 
-- [ ] Open the file in your code editor
+- [ ] Open the file in your code editor `code .`
 - [ ] Setup JavaScript + CSS + HTML linter
 
 Run the following codes in your project folder in your IDE: `npm install --save-dev stylelint@13.x stylelint-scss@3.x stylelint-config-standard@21.x stylelint-csstree-validator@1.x` `npm install --save-dev eslint@7.x eslint-config-airbnb-base@14.x eslint-plugin-import@2.x babel-eslint@10.x`
@@ -132,6 +139,7 @@ Install this project with:
 - [ ] node_models `npm install -g node-modules`
 - [ ] webpack `npm install -g webpack` `npm install -g webpack-cli`
 - [ ] project dependencies
+- [ ] exclude node-modules folder from github. create a `.gitignore` file to the root directory. add this line: `node_modules/`
 
 <!--
 Example command:
@@ -221,7 +229,7 @@ Give a ⭐️ if you like this project!
 
 <!-- > Give credit to everyone who inspired your codebase.-->
 
-- [ ] **![](https://img.shields.io/badge/Microverse-blueviolet)**
+- [ ] **![Microverse Team](https://img.shields.io/badge/Microverse-blueviolet)**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

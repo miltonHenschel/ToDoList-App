@@ -49,8 +49,9 @@ class UserInterface {
     const listElt = document.createElement('li');
     listElt.classList = 'new';
     listElt.id = `${item.index}`;
+    const checked = item.comp ? 'checked' : '';
     listElt.innerHTML += `
-      <span class="inputs"><input class="checkbox" type="checkbox" ${item.comp} /><input class="desc" type="text" value="${item.desc}" /></span>
+      <span class="inputs"><input class="checkbox" type="checkbox" ${checked} /><input class="desc" type="text" value="${item.desc}" /></span>
       <button class="text-btn" type="button">
         <i class="fa-solid fa-trash-can"></i>
       </button>

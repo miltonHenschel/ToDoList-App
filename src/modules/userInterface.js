@@ -44,38 +44,14 @@ class UserInterface {
     });
   }
 
-  // // COMPLETED TO DO lIST
-  // static compToDoList() {
-  //   const checkbox = document
-  //     .querySelector('#list')
-  //     .querySelectorAll('.checkbox');
-
-  //   checkbox.forEach((elt) => {
-  //     elt.addEventListener('change', (e) => {
-  //       LocalStorage.taskComp(e.target.parentElement.parentElement.id);
-  //     });
-  //   });
-  // }
-
-  // // CLEAR COMPLETED TO DO LIST
-  // static clearComp() {
-  //   const clearButton = document.querySelector('.clear');
-  //   clearButton.addEventListener('click', () => {
-  //     let todolists = LocalStorage.getToDoLists();
-  //     todolists = todolists.filter((elt) => elt.comp !== true);
-  //     localStorage.setItem('todolists', JSON.stringify(todolists));
-  //     window.location.reload();
-  //     LocalStorage.resetIndex();
-  //   });
-  // }
-
   static addToDoLists(item) {
     const listContent = document.querySelector('#list');
     const listElt = document.createElement('li');
     listElt.classList = 'new';
     listElt.id = `${item.index}`;
+    const checked = item.comp ? 'checked' : '';
     listElt.innerHTML += `
-      <span class="inputs"><input class="checkbox" type="checkbox" ${item.comp} /><input class="desc" type="text" value="${item.desc}" /></span>
+      <span class="inputs"><input class="checkbox" type="checkbox" ${checked} /><input class="desc" type="text" value="${item.desc}" /></span>
       <button class="text-btn" type="button">
         <i class="fa-solid fa-trash-can"></i>
       </button>

@@ -337,5 +337,6 @@
   "bugs": {
     "url": "https://github.com/miltonHenschel/ToDoList-App/issues"
   },
-  "homepage": "https://miltonHenschel.github.io/ToDoList-App/dist"
+  "homepage": "https://miltonHenschel.github.io/ToDoList-App/dist",
+  "main": "webpack.config.js"
 }
